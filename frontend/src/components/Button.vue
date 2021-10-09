@@ -12,7 +12,9 @@ export default {
     },
     methods: {
         AddCourse() {
-                console.log('click');
+            console.log('working')
+            
+                
             }
 
 

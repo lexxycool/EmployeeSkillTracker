@@ -1,12 +1,15 @@
 <template>
   <div class="container">
-    <Header title="Skill Tasker"/>
-    <Courses :courses="courses"/>
+    <Header title="Skill Tracker"/>
+    <AddCourse />
+    <Courses :courses="courses" @delete-course="deleteCourse"/>
+    
       
   </div>
 </template>
 
 <script>
+import AddCourse from './components/AddCourse.vue'
 import Courses from './components/Courses.vue'
 import Header from './components/Header.vue'
 
@@ -18,6 +21,13 @@ export default {
 
             }
         },
+        methods: {
+            deleteCourse(id) {
+              alert('Are you sure you want to permanently delete this course ?');
+              this.courses = this.courses.filter(course => course.id !== id);
+             
+            }
+          },
         created() {
             this.courses =  [
                 {
@@ -35,12 +45,18 @@ export default {
                 coursename: "JavaScript",
                 status: "Completed",
                 },
+                {
+                id: 4,
+                coursename: "Web Development",
+                status: "Not Started",
+                },
             ]    
          },
 
   components: {
     Header,
-    Courses
+    Courses,
+    AddCourse
   
   }
 }

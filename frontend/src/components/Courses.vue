@@ -2,7 +2,7 @@
 <div>
       <div class="courseBody" v-for="course in courses" :key="course.id">
            <h3>{{ course.coursename }}
-               <i class="fas fa-trash"></i>
+               <i  @click="deleteCourse(course.id)" class="fas fa-trash"></i>
            </h3> 
            
             <p>{{ course.status }}</p>
@@ -17,7 +17,13 @@ export default {
     name: 'Courses',
     props: {
         courses: Array
-    }
+    },
+    methods: {
+        deleteCourse(id) {
+            this.$emit('delete-course', id);
+        },
+
+    },
 }
 </script>
 
@@ -40,5 +46,5 @@ export default {
         font-size: 12px;
         margin-top: 10px;
         }
-        
+
 </style>

@@ -1,7 +1,10 @@
 <template>
   <header>
      <h2>{{ title }}</h2>
-     <Button text="Add Course" color="green"/>
+     <router-link to="/addCourse">
+         <Button text="Add Course" color="green"/>
+     </router-link>
+     
   </header>
 </template>
 
