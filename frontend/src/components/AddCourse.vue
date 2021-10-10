@@ -1,10 +1,10 @@
 <template>
 <div>
-    <form class="add-form" @submit.prevent="submitForm">
+    
+    <form class="add-form">
       <h3>Add Course</h3>
       <div class="form-control">
-          <label>Course</label>
-          <input type="text" name='course' placeholder="Add Course..." v-model="name">
+            <input type="text" name='course' placeholder="Add Course..." v-model="name">
       </div>
       <div class="form-control">
           <label>EmployeeId</label>
@@ -12,8 +12,12 @@
       </div>
        <div class="form-control">
           <label>Status</label>
-          <input type="text" name='status' placeholder="Status..." v-model="status">
-      </div>
+          <select name="status" placeholder="status" v-model="status">
+              <option></option>
+              <option>in-view</option> 
+              <option>completed</option>     
+          </select>
+        </div>
        <div class="form-control">
           <label>Start Date</label>
           <input type="text" name='startdate' v-model='startdate'>
@@ -23,7 +27,7 @@
           <input type="text" name='enddate' v-model="enddate">
       </div>
 
-      <input type="submit" value="Save" class="btn btn-block">
+      <input type="submit" value="Save" class="button">
     
 
   </form>
@@ -73,26 +77,59 @@ export default {
 <style scoped>
     .add-form {
         margin-bottom: 40px;
-
+        text-align: center;
+       
+    
     }
     .form-control {
-        margin: 20px 0;
+        margin: 15px 0 20px 5px;
+       
     }
 
     .form-control label {
         display: block;
-        margin-bottom: 5px;
+        margin-bottom: 5px 0px;
         
     }
 
     .form-control input {
-        width: 100%;
-        height: 40px;
-        margin: 5px 3px;
+        width: 25%;
+        height: 20px;
+        margin: 5px 5px;
         padding: 3px 7px;
         font-size: 15px;
     
     }
+
+     .form-control select {
+        width: 27%;
+        height: 28px;
+        margin: 5px 3px ;
+        padding: 3px 7px;
+        font-size: 15px;
+    
+    }
+
+    .button {
+        width: 27%;
+        margin: 20px 0px 0px 5px;
+        font-size: 20px;
+        background: gray;
+        border: 0px;
+        border-radius: 5px;
+        color: white;
+    }
+
+     .button:hover {
+        width: 27%;
+        margin: 20px 0px 0px 5px;
+        font-size: 20px;
+        background: green;
+        border: 0px;
+        border-radius: 5px;
+        color: white;
+    }
+
 
 
 
