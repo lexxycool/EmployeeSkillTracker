@@ -1,115 +1,33 @@
 <template>
-  <div class="container">
-    <Header title="Skill Tracker"/>
-    <AddCourse />
-    <Courses :courses="courses" @delete-course="deleteCourse"/>
-    
-      
+  <div id="app">
+    <div id="nav">
+      <router-link to="/">Home</router-link> |
+      <router-link to="/">Dashboard</router-link> |
+       <router-link to="/addCourse">Add Course</router-link>
+    </div>
+    <router-view/>
   </div>
 </template>
 
-<script>
-import AddCourse from './components/AddCourse.vue'
-import Courses from './components/Courses.vue'
-import Header from './components/Header.vue'
-
-export default {
-  name: 'App',
-   data() {
-        return {
-            courses: [],
-
-            }
-        },
-        methods: {
-            deleteCourse(id) {
-              alert('Are you sure you want to permanently delete this course ?');
-              this.courses = this.courses.filter(course => course.id !== id);
-             
-            }
-          },
-        created() {
-            this.courses =  [
-                {
-                id: 1,
-                coursename: "Java",
-                status: "in-view",
-                },
-                {
-                id: 2,
-                coursename: "Postgres",
-                status: "Completed",
-                },
-                {
-                id: 3,
-                coursename: "JavaScript",
-                status: "Completed",
-                },
-                {
-                id: 4,
-                coursename: "Web Development",
-                status: "Not Started",
-                },
-            ]    
-         },
-
-  components: {
-    Header,
-    Courses,
-    AddCourse
-  
-  }
-}
-</script>
-
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap');
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
 }
-body {
-  font-family: 'Poppins', sans-serif;
-}
-.container {
-  width: 350px;
-  margin: 30px auto;
-  overflow: auto;
-  min-height: 300px;
-  border: 1px solid steelblue;
+
+#nav {
   padding: 30px;
-  border-radius: 5px;
-}
-.btn {
-  display: inline-block;
-  background: #000;
-  color: #fff;
-  border: none;
-  padding: 10px 20px;
-  margin: 5px;
-  border-radius: 5px;
-  cursor: pointer;
-  text-decoration: none;
-  font-size: 15px;
-  font-family: inherit;
-}
-.btn:focus {
-  outline: none;
-}
-.btn:active {
-  transform: scale(0.98);
-}
-.btn-block {
-  display: block;
-  width: 100%;
 }
 
-@media(min-width: 700px) {
-  .container {
-      width: 40%;
-  }
+#nav a {
+  font-weight: bold;
+  color: #2c3e50;
+}
 
-  }
-
+#nav a.router-link-exact-active {
+  color: #42b983;
+}
 </style>

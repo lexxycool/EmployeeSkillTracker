@@ -1,6 +1,6 @@
 <template>
-
-  <form class="add-form" @submit.prevent="submitForm">
+<div>
+    <form class="add-form" @submit.prevent="submitForm">
       <h3>Add Course</h3>
       <div class="form-control">
           <label>Course</label>
@@ -27,6 +27,8 @@
     
 
   </form>
+</div>
+  
 </template>
 
 <script>
