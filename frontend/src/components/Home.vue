@@ -1,120 +1,95 @@
 <template>
-   <div>
-       <h2><span>Perficient</span> Employees</h2>
-       <div v-for="employee in employees" :key="employee.id">
-            <hr>
-           <h3>{{employee.name}}</h3>
-           <p>{{employee.department}}</p>
-       </div>
-       <div class="edit">
-           <div class="add" >
-               <i class="fa fa-plus" @click="add"></i> Add 
-           </div>
-           <div class="delete">
-                <i class="fa fa-trash" @click="remove"></i>Delete
-           </div>
-       </div>
+  <div class="home"> 
+     <div id="description">
+        <h3>Learning never exhausts the mind</h3>
        
-   </div>
+    </div>
+   
+       <div><p>Already have an account? <button id="loginbutton" @click="login">Login</button></p></div>
+  </div>
 </template>
 
 <script>
 export default {
-    data() {
-        return {
-            employees: [],
-        }
-    },
     methods: {
-        add() {
-            console.log('working');
-            this.$router.push('/addEmployee');
-        },
-        remove() {
-            this.$router.push('/deleteEmployee');
-        }
-    },
-    created() {
-        this.employees = [
-            {
-                id: 1,
-                name: 'John Wick',
-                department: 'Software Development'
-            },
-            {
-                id: 2,
-                name: 'Stephanie Weiss',
-                department: 'Human Resource'
-            },
-            {
-                id: 3,
-                name: 'Bradley Cooper',
-                department: 'Product Management'
-            },
-            
-        ]
+      login() {
+      this.$router.push('/login');
     }
-
+  }
 }
 </script>
 
-<style>
-    hr {
-        width: 50%;
-      
-    }
+<style scoped>
+ 
+#loginbutton {
+color: rgb(87, 87, 245);
+background-color: transparent;
+border: white;
+font-family:Verdana, sans-serif;
+font-size: 18px;
+font-weight: 600;
+cursor: pointer;
+}
+div p{
+  font-family: Verdana, sans-serif;
+  margin: 7px 0px 0px 200px;
+  color:rgb(88, 86, 86);
+}
+h3{
+  font-size: 60px;
+  color: rgb(9, 160, 9);
+}
 
-    h2 span {
-        color: red;
-    }
+#description{
+  padding: 5px 80px;
+  inline-size: 500px;
+  overflow-wrap: break-word;
+}
 
-    div h3:hover {
-        color: #42b983;
-        cursor: pointer;
-    }
+.home{
+  background: url(../assets/employee.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+  overflow: hidden;
+}
 
-    .edit {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin: 50px 0px 0px 50px;
-        
-    }
+@media screen and (min-width: 700px){
+  #loginbutton {
+color: rgb(87, 87, 245);
+background-color: transparent;
+border: white;
+font-family:Verdana, sans-serif;
+font-size: 18px;
+font-weight: 600;
+cursor: pointer;
+}
+div p{
+  font-family: Verdana, sans-serif;
+  margin: 7px 0px 0px 200px;
+  color:rgb(88, 86, 86);
+}
+h3{
+  font-size: 40px;
+  color: rgb(9, 160, 9);
+}
 
-    .edit div {
-        margin-right: 50px;
-        font-weight: 700;
-        
-    }
+#description{
+  padding: 5px 80px;
+  inline-size: 500px;
+  overflow-wrap: break-word;
+}
 
-     .edit div i {
-        margin-right: 2px;
-      
-    }
+.home{
+  background: url(../assets/employee.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+  overflow: hidden;
+}
+}
 
-    .add i {
-        color: rgb(131, 131, 241);
-        cursor: pointer;
-    }
 
-  
 
-     .delete i {
-          color: red;
-          cursor: pointer;
-    }
-
-     @media(min-width: 700px) {
-       hr {
-            width: 30%;
-        }
-
-       .edit {
-        display: flex;
-        align-items: center;
-        justify-items: center;
-        }
-        
-     }
 
 </style>

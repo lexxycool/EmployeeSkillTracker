@@ -2,9 +2,12 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import AddCourse from '../views/AddCourse'
 import Dashboard from '../views/Dashboard'
-import Home from '../views/Home'
+import HomePage from '../views/HomePage'
 import AddEmployee from '../views/AddEmployee'
 import DeleteEmployee from '../views/DeleteEmployee'
+import Home from '../views/Home'
+import Login from '../views/Login'
+
 
 
 Vue.use(VueRouter)
@@ -15,6 +18,17 @@ const routes = [
     name: 'home',
     component: Home
   },
+  {
+    path: '/login',
+    name: 'login',
+    component: Login
+  },
+  {
+    path: '/homepage',
+    name: 'home-page',
+    component: HomePage
+  },
+  
 
   {
     path: '/addCourse',

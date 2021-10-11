@@ -5,7 +5,9 @@
 <script>
 import Home from '../components/Home.vue'
 export default {
-     components: { Home },
+    components: {
+        Home
+    }
 }
 </script>
 

@@ -1,0 +1,23 @@
+import axios from 'axios';
+
+export default {
+
+    getEmployees() {
+        return axios.get('/employee');
+    },
+
+    getEmployee(id) {
+        return axios.get(`/employee/${id}`);
+    },
+
+    addEmployee(employee) {
+        return axios.post('/employee', employee);
+    },
+
+    deleteEmployee(id) {
+        return axios.put(`/delete/${id}`);
+    }
+
+
+
+}

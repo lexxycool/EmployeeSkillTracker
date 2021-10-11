@@ -1,5 +1,10 @@
 <template>
   <div>
+      <div id="nav">
+      <router-link to="/homepage">Home</router-link> |
+      <router-link to="/dashboard">Dashboard</router-link> |
+       <router-link to="/addCourse">SignOut</router-link>
+    </div>
    
  <form class="add-form">
       
@@ -21,14 +26,10 @@
 export default {
     data() {
         return {
-
+            
         }
-    },
-    employee: {
-        name: '',
-        department: ''
+    
     }
-
 }
 </script>
 

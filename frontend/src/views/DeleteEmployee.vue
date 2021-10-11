@@ -1,11 +1,12 @@
 <template>
- <delete-employee />
+  <delete-employee/>
 </template>
 
 <script>
 import DeleteEmployee from '../components/DeleteEmployee.vue'
 export default {
- components: { DeleteEmployee },
+  components: { DeleteEmployee },
+
 }
 </script>
 
