@@ -41,6 +41,7 @@
 </template>
 
 <script>
+import ApiService from '../services/ApiService'
 export default {
     name: 'addCourse',
     data() {
@@ -52,14 +53,12 @@ export default {
             startdate: '',
             enddate: '',
             actions: '',
+
+         
         }
     },
     methods: {
         submitForm() {
-            if(!this.name) {
-                alert('Please add a course')
-                return;
-            }
 
             const newCourse = {
                 name: this.name,
@@ -70,13 +69,27 @@ export default {
                 enddate: this.enddate,
                 actions: this.actions
             }
-            console.log(newCourse);
+        
+       
+            ApiService
+            .addEmployee(newCourse)
+            .then(response => {
+                if(response.status == 200) {
+                    alert("course Added");
+                    
+                }
+            })
+            .catch(error => {
+                console.log(error.response);
+            }) 
+                
+            
+        }
+    }
             
         }
 
-    }, 
-    
-}
+ 
 </script>
 
 <style scoped>

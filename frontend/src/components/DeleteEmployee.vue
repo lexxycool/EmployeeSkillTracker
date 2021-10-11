@@ -7,15 +7,15 @@
        <router-link to="/addCourse">SignOut</router-link>
     </div>
     
-    <form class="delete-form" @submit="addEmployee">
+    <form class="delete-form" @submit="deleteEmployee(employee.id)">
         
         <div class="form-control">
             <label>Full Name</label>
-                <input type="text" name='name' placeholder="name..." v-model="name">
+                <input type="text" name='name' placeholder="name..." v-model="employee.name">
         </div>
         <div class="form-control">
             <label>Department</label>
-            <input type="text" name='department' placeholder="Department..." v-model="department">
+            <input type="text" name='department' placeholder="Department..." v-model="employee.department">
         </div>
         <input type="submit" value="Delete" class="button">
     </form>
@@ -24,16 +24,48 @@
 </template>
 
 <script>
+import ApiService from '../services/ApiService'
 export default {
     data() {
         return {
-
+            employee: {
+                name: "",
+                department: ""
+            },
+            employees: [],
         }
     },
-    employee: {
-        name: '',
-        department: ''
+     created() {
+            ApiService
+            .getEmployees()
+            .then(response => {
+                if(response.status == 200) {
+                    this.employees = response.data;
+                }
+                
+            })
+            .catch((error) => {
+                if(response.status == 401) {
+                    this.ErrorMsg = "Please try again";
+                }
+            })
+
+     
+    },
+    methods: {
+    
+        deleteEmployee() {
+             const this_employee = employees.filter(name => {
+                 return this.employee.name = name;
+             })
+             const id = this_employee.id;
+            ApiService.deleteEmployee(id);
+
+              
+               
+        }
     }
+   
 
 }
 </script>

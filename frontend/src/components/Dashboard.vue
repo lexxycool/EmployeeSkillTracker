@@ -56,8 +56,25 @@
 export default {
     data() {
       return {
-          employee: []
+          course: []
       }
+    },
+    ErrorMsg: "",
+    created() {
+            ApiService
+            .getCourses()
+            .then(response => {
+                if(response.status == 200) {
+                    this.course = response.data;
+                }
+                
+            })
+            .catch((error) => {
+                if(response.status == 401) {
+                    this.ErrorMsg = "Please try again";
+                }
+            })
+     
     },
     methods: {
       addCourse() {

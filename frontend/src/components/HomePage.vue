@@ -9,16 +9,18 @@
        <h2><span>Perficient</span> Employees</h2>
        <div v-for="employee in employees" :key="employee.id">
             <hr>
-           <h3>{{employee.name}}</h3>
+           <h3 >{{employee.name}}</h3> 
            <p>{{employee.department}}</p>
+            <div class="delete">
+                <i class="fa fa-trash" @click="remove(employee.employeeId)"></i>Delete
+           </div>
+          
        </div>
        <div class="edit">
            <div class="add" >
-               <i class="fa fa-plus" @click="add"></i> Add 
+               <i class="fa fa-plus" @click="add"></i> Add Employee
            </div>
-           <div class="delete">
-                <i class="fa fa-trash" @click="remove"></i>Delete
-           </div>
+           
        </div>
        
    </div>
@@ -35,42 +37,46 @@ export default {
         }
     },
     methods: {
+       
         add() {
-           
+            
             this.$router.push('/addEmployee');
         },
-        remove() {
-            this.$router.push('/deleteEmployee');
+        remove(id) {
+         
+            alert("Are you sure you want to premanently remove this employee");
+            ApiService.deleteEmployee(id)
+            .then(response => {
+                if(response.data == 200) {
+                    this.employees = employees.filter(item => {
+                        return item.id != id;
+                    })
+                }
+            })
+            location.reload();
+            
+            
+            
         }
     },
+    ErrorMsg: "",
     created() {
             ApiService
             .getEmployees()
             .then(response => {
-                console.log(response.data)
-                this.employees = response.data;
+                if(response.status == 200) {
+                    console.log(response.data)
+                    this.employees = response.data;
+                }
+                
+            })
+            .catch((error) => {
+                if(response.status == 401) {
+                    this.ErrorMsg = "Please try again";
+                }
             })
 
-        this.employees = [
-
-
-            {
-                id: 1,
-                name: 'John Wick',
-                department: 'Software Development'
-            },
-            {
-                id: 2,
-                name: 'Stephanie Weiss',
-                department: 'Human Resource'
-            },
-            {
-                id: 3,
-                name: 'Bradley Cooper',
-                department: 'Product Management'
-            },
-            
-        ]
+     
     }
 
 }
@@ -106,7 +112,7 @@ export default {
     }
 
      .edit div i {
-        margin-right: 2px;
+        margin-right: 10px;
       
     }
 

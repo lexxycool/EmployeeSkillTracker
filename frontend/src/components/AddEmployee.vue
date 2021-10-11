@@ -6,15 +6,15 @@
        <router-link to="/addCourse">SignOut</router-link>
     </div>
    
- <form class="add-form">
+ <form class="add-form" @submit="addEmployee">
       
       <div class="form-control">
           <label>Full Name</label>
-            <input type="text" name='name' placeholder="name..." v-model="name">
+            <input type="text" name='name' placeholder="name..." v-model="employee.name">
       </div>
       <div class="form-control">
           <label>Department</label>
-          <input type="text" name='department' placeholder="Department..." v-model="department">
+          <input type="text" name='department' placeholder="Department..." v-model="employee.department">
       </div>
       <input type="submit" value="Save" class="button">
   </form>
@@ -23,13 +23,37 @@
 </template>
 
 <script>
+import ApiService from '../services/ApiService'
 export default {
     data() {
         return {
-            
+            employee: {
+                name: "",
+                department: "",
+                username: "",
+                password:""
+            }
         }
     
+    },
+    methods: {
+        addEmployee() {
+            ApiService
+            .addEmployee(this.employee)
+            .then(response => {
+                if(response.status == 200) {
+                    alert("Employee Added");
+                    this.$router.push('/homepage');
+                }
+            })
+            .catch(error => {
+                console.log(error.response);
+            }) 
+                
+            
+        }
     }
+
 }
 </script>
 

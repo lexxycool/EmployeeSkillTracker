@@ -1,22 +1,32 @@
 import axios from 'axios';
 
+const http = axios.create({
+    baseURL: 'http://localhost:8080'
+});
+
 export default {
 
     getEmployees() {
-        return axios.get('/employee');
+        return http.get('/employee');
     },
 
     getEmployee(id) {
-        return axios.get(`/employee/${id}`);
+        return http.get(`/employee/${id}`);
     },
 
     addEmployee(employee) {
-        return axios.post('/employee', employee);
+        return http.post('/add-employee', employee);
     },
 
     deleteEmployee(id) {
-        return axios.put(`/delete/${id}`);
-    }
+        return http.put(`/delete-employee/${id}`);
+    },
+    getCourses() {
+        return http.get('/courses');
+    },
+     addCourse(course) {
+        return http.post('/add-course', course);
+    },
 
 
 
