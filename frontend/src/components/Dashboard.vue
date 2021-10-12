@@ -4,7 +4,7 @@
     <div id="nav">
       <router-link to="/homepage">Home</router-link> |
       <router-link to="/dashboard">Dashboard</router-link> |
-       <router-link to="/addCourse">SignOut</router-link>
+       <router-link to="/">SignOut</router-link>
     </div>
    
   

@@ -3,14 +3,16 @@
   <div class="signup">
       
     <h2>Create your free account here</h2>
-        <form>
+        <form @submit="signin">
             <div class="register">
-                 <input type="text" placeholder="name.." name="text" class="info">
-                <input type="text" placeholder="name.." name="text" class="info">
-                <input type="text" placeholder="name.." name="text" class="info">
+                 <input type="text" placeholder="name.." name="text" class="info" >
+                <input type="password" placeholder="password.." name="text" class="info">
+                <input type="text" placeholder="role.." name="text" class="info">
             </div>
-
-            <button class="submit">Create Account</button>
+           
+                <button class="submit" >Create Account</button>
+          
+            
            
         </form>
         
@@ -20,7 +22,12 @@
 
 <script>
 export default {
- 
+   methods: {
+       signin() {
+            this.$router.push('/homepage');
+        }
+
+   }
   
 }
 </script>
@@ -58,16 +65,22 @@ export default {
   }
 
   .submit {
-      width: 56%;
+      width: 50%;
       margin: 25px 0px;
       opacity: 0.7;
       font-size: 18px;
       padding: 10px 15px;
+      cursor: pointer;
       font-weight: bold;
-      color: #ffff;
-      background-color: rgba(20,20,236);
+      color: #000;
+      background-color: grey;
       border: 1px solid;
       border-radius: 5px;
+  }
+
+  .submit:hover {
+      background-color: rgba(20,20,236);
+      color: #fff
   }
 
   ::-webkit-input-placeholder {
