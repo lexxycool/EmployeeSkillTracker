@@ -7,7 +7,7 @@ import AddEmployee from '../views/AddEmployee'
 import DeleteEmployee from '../views/DeleteEmployee'
 import Home from '../views/Home'
 import Login from '../views/Login'
-
+import EditEmployee from '../views/EditEmployee'
 
 
 Vue.use(VueRouter)
@@ -28,7 +28,11 @@ const routes = [
     name: 'home-page',
     component: HomePage
   },
-  
+  {
+    path: '/edit',
+    name: 'edit-page',
+    component: EditEmployee
+  },
 
   {
     path: '/addCourse',

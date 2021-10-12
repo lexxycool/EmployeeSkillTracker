@@ -3,7 +3,7 @@
     <div id="nav">
       <router-link to="/homepage">Home</router-link> |
       <router-link to="/dashboard">Dashboard</router-link> |
-       <router-link to="/addCourse">SignOut</router-link>
+       <router-link to="/home">SignOut</router-link>
     </div>
    <div>
        <h2><span>Perficient</span> Employees</h2>
@@ -11,17 +11,23 @@
             <hr>
            <h3 >{{employee.name}}</h3> 
            <p>{{employee.department}}</p>
-            <div class="delete">
-                <i class="fa fa-trash" @click="remove(employee.employeeId)"></i>Delete
+           <div class="icons">
+               <div class="edit">
+                    <i class="fa fa-edit" @click="edit(employee.employeeId)"></i>Edit
+                </div>
+                <div class="delete">
+                    <i class="fa fa-trash" @click="remove(employee.employeeId)"></i>Delete
+                </div>
            </div>
+            
           
        </div>
-       <div class="edit">
+       
            <div class="add" >
-               <i class="fa fa-plus" @click="add"></i> Add Employee
+               <i class="fa fa-plus" @click="add"></i>Add Employee
            </div>
            
-       </div>
+       
        
    </div>
 </div>
@@ -37,11 +43,9 @@ export default {
         }
     },
     methods: {
-       
-        add() {
-            
+       add() {
             this.$router.push('/addEmployee');
-        },
+       },
         remove(id) {
          
             alert("Are you sure you want to premanently remove this employee");
@@ -57,6 +61,9 @@ export default {
             
             
             
+        },
+        edit(id) {
+            this.$router.push('/edit');
         }
     },
     ErrorMsg: "",
@@ -65,7 +72,7 @@ export default {
             .getEmployees()
             .then(response => {
                 if(response.status == 200) {
-                    console.log(response.data)
+                    
                     this.employees = response.data;
                 }
                 
@@ -77,7 +84,8 @@ export default {
             })
 
      
-    }
+    },
+    
 
 }
 </script>
@@ -96,29 +104,37 @@ export default {
         color: #42b983;
         cursor: pointer;
     }
-
-    .edit {
+    .edit{
         display: flex;
         align-items: center;
         justify-content: center;
-        margin: 50px 0px 0px 50px;
+        font-size: 13px; 
+        margin-right: 30px;
+        color: rgb(3, 121, 3);
+        cursor: pointer;
+    }
+
+    .icons {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 13px;
         
     }
 
     .edit div {
         margin-right: 50px;
         font-weight: 700;
+       
         
     }
 
-     .edit div i {
-        margin-right: 10px;
-      
-    }
 
     .add i {
         color: rgb(131, 131, 241);
         cursor: pointer;
+        margin: 40px 2px 0px 20px;
+       
     }
 
   

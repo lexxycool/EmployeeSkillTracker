@@ -18,6 +18,10 @@ export default {
         return http.post('/add-employee', employee);
     },
 
+    editEmployee(id, employee) {
+        return http.put('/edit-employee/{id}', employee)
+    },
+
     deleteEmployee(id) {
         return http.put(`/delete-employee/${id}`);
     },

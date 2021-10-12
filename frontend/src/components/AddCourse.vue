@@ -6,18 +6,18 @@
        <router-link to="/addCourse">SignOut</router-link>
     </div>
     
-    <form class="add-form">
+    <form class="add-form" @submit.prevent="submitCourse">
       <h3>Add Course</h3>
       <div class="form-control">
-            <input type="text" name='course' placeholder="Add Course..." v-model="name">
+            <input type="text" name='course' placeholder="Add Course..." v-model="course.coursename">
       </div>
       <div class="form-control">
-          <label>EmployeeId</label>
-          <input type="text" name='employeeid' placeholder="Employeeid..." v-model="employeeid">
+          <label>Department</label>
+          <input type="text" name='department' placeholder="Department..." v-model="course.department">
       </div>
        <div class="form-control">
           <label>Status</label>
-          <select name="status" placeholder="status" v-model="status">
+          <select name="status" placeholder="status" v-model="course.status">
               <option></option>
               <option>in-view</option> 
               <option>completed</option>     
@@ -25,11 +25,11 @@
         </div>
        <div class="form-control">
           <label>Start Date</label>
-          <input type="text" name='startdate' v-model='startdate'>
+          <input type="text" name='startdate' v-model="course.startdate">
       </div>
        <div class="form-control">
           <label>End Date</label>
-          <input type="text" name='enddate' v-model="enddate">
+          <input type="text" name='enddate' v-model="course.enddate">
       </div>
 
       <input type="submit" value="Save" class="button">
@@ -46,37 +46,28 @@ export default {
     name: 'addCourse',
     data() {
         return {
-            name: '',
-            courseId: '',
-            employeeid: '',
-            status: '',
-            startdate: '',
-            enddate: '',
-            actions: '',
+            course: {
+                coursename: '',
+                status: '',
+                startdate: '',
+                enddate: '',
+                department: ''
+                
+      
+            }
 
          
         }
     },
     methods: {
-        submitForm() {
-
-            const newCourse = {
-                name: this.name,
-                courseid: Math.floor(Math.random() * 1000),
-                employeeid: this.employeeid,
-                status: this.status,
-                startdate: this.startdate,
-                enddate: this.enddate,
-                actions: this.actions
-            }
-        
-       
+        submitCourse() {
+              
             ApiService
-            .addEmployee(newCourse)
+            .addCourse(this.course)
             .then(response => {
                 if(response.status == 200) {
-                    alert("course Added");
-                    
+                    alert("Course is added")
+                    this.$router.push('/dashboard')
                 }
             })
             .catch(error => {

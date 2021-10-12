@@ -22,23 +22,17 @@
            <th>End date</th>  
           </tr>
 
-          <tr>
-            <td>Software Development</td>
-            <td>Java</td>
-            <td>completed</td>
-            <td>02/05/2021</td>
-            <td>07/08/2021</td>
+          <tr v-for="course in courses" :key="course.id">
+            <td>{{ course.department }}</td>
+            <td>{{ course.coursename }}</td>
+            <td>{{ course.status }}</td>
+            <td>{{ course.startdate }}</td>
+            <td>{{ course.enddate }}</td>
            
          </tr>   
 
-         <tr>
-           <td>Cloud Management</td>
-            <td>AWS</td>
-            <td>in-view</td>
-            <td>04/05/2021</td>
-            <td>10/08/2021</td>
-           
-         </tr>      
+       
+              
        
       </table>
       <button class="btn" @click="addCourse">Add Course</button>
@@ -53,10 +47,11 @@
 </template>
 
 <script>
+import ApiService from '../services/ApiService'
 export default {
     data() {
       return {
-          course: []
+          courses: []
       }
     },
     ErrorMsg: "",
@@ -65,7 +60,8 @@ export default {
             .getCourses()
             .then(response => {
                 if(response.status == 200) {
-                    this.course = response.data;
+                
+                    this.courses = response.data;
                 }
                 
             })
